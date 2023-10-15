@@ -28,8 +28,14 @@ function playRound(playerChoice, computerChoice) {
   } else {
     computerScore++;
   }
-  console.log(playerScore);
-  console.log(computerScore);
+  console.log("player score: " + playerScore);
+  console.log("computer score: " + computerScore);
 }
 
-playRound(playerSelection(), getComputerChoice());
+function game(numberOfRounds) {
+  for (let i = 0; i < numberOfRounds; i++) {
+    playRound(playerSelection(), getComputerChoice());
+  }
+}
+
+game(5);
