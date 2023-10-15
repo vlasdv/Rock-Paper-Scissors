@@ -36,6 +36,17 @@ function game(numberOfRounds) {
   for (let i = 0; i < numberOfRounds; i++) {
     playRound(playerSelection(), getComputerChoice());
   }
+  displayWinner();
+}
+
+function displayWinner() {
+  if (playerScore > computerScore) {
+    console.log("player wins");
+  } else if (playerScore < computerScore) {
+    console.log("computer wins");
+  } else {
+    console.log("tie!");
+  }
 }
 
 game(5);
