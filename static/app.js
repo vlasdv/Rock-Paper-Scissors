@@ -8,14 +8,14 @@ function getComputerChoice() {
   return computerChoice;
 }
 
-function playerSelection() {
-  let input;
-  do {
-    input = prompt("Enter rock, paper or scissors").toLowerCase();
-  } while (POSSIBLE_CHOICES.includes(input));
-  console.log("player: " + input);
-  return input;
-}
+// function playerSelection() {
+//   let input;
+//   do {
+//     input = prompt("Enter rock, paper or scissors").toLowerCase();
+//   } while (POSSIBLE_CHOICES.includes(input));
+//   console.log("player: " + input);
+//   return input;
+// }
 
 function playRound(playerChoice, computerChoice) {
   if (playerChoice === computerChoice) {
@@ -32,12 +32,12 @@ function playRound(playerChoice, computerChoice) {
   console.log("computer score: " + computerScore);
 }
 
-function game(numberOfRounds) {
-  for (let i = 0; i < numberOfRounds; i++) {
-    playRound(playerSelection(), getComputerChoice());
-  }
-  displayWinner();
-}
+// function game(numberOfRounds) {
+//   for (let i = 0; i < numberOfRounds; i++) {
+//     playRound(playerSelection(), getComputerChoice());
+//   }
+//   displayWinner();
+// }
 
 function displayWinner() {
   if (playerScore > computerScore) {
