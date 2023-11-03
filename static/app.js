@@ -2,7 +2,7 @@ const POSSIBLE_CHOICES = ["rock", "paper", "scissors"];
 let playerScore = 0;
 let computerScore = 0;
 
-function getComputerChoice() {
+function generateComputerChoice() {
   let computerChoice = POSSIBLE_CHOICES[Math.floor(Math.random() * 3)];
   console.log("computer: " + computerChoice);
   return computerChoice;

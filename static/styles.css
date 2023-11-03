@@ -1,0 +1,57 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  height: 100vh;  
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+button {
+  font-size: 30px;
+}
+
+.box {
+  width: 40%;
+  display: flex;
+  justify-content: center;      
+}
+
+.buttons-container {
+  height: 180px;  
+}
+
+.game-buttons {
+  font-size: 120px;
+  background: transparent;
+  border: none;
+}
+
+.new-game {
+  font-size: 40px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 0 1 180px;  
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.score-container {
+  font-size: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
