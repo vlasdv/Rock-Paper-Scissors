@@ -1,11 +1,12 @@
 const POSSIBLE_CHOICES = ["rock", "paper", "scissors"];
-let playerScore = 0;
-let computerScore = 0;
+let playerScore = document.querySelector('#player-score');
+let computerScore = document.querySelector('#computer-score');
 
 const gameButtons = document.querySelectorAll('.game-buttons');
 gameButtons.forEach((button) => {
   button.addEventListener('click', () => {
     console.log(button.id);
+    playRound(button.id, generateComputerChoice());
   });
 });
 
@@ -13,6 +14,14 @@ function generateComputerChoice() {
   let computerChoice = POSSIBLE_CHOICES[Math.floor(Math.random() * 3)];
   console.log("computer: " + computerChoice);
   return computerChoice;
+}
+
+function increasePlayerScore() {
+  playerScore.textContent = Number(playerScore.textContent) + 1;
+}
+
+function increaseComputerScore() {
+  computerScore.textContent = Number(computerScore.textContent) + 1;
 }
 
 // function playerSelection() {
@@ -26,17 +35,17 @@ function generateComputerChoice() {
 
 function playRound(playerChoice, computerChoice) {
   if (playerChoice === computerChoice) {
-    playerScore++;
-    computerScore++;
+    increasePlayerScore();
+    increaseComputerScore();
   } else if ((playerChoice === "rock" && computerChoice === "scissors") || 
              (playerChoice === "paper" && computerChoice === "rock") || 
              (playerChoice === "scissors" && computerChoice === "paper")) {
-    playerScore++;
+    increasePlayerScore();
   } else {
-    computerScore++;
+    increaseComputerScore();
   }
-  console.log("player score: " + playerScore);
-  console.log("computer score: " + computerScore);
+  console.log("player score: " + playerScore.textContent);
+  console.log("computer score: " + computerScore.textContent);
 }
 
 // function game(numberOfRounds) {
