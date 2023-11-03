@@ -2,6 +2,13 @@ const POSSIBLE_CHOICES = ["rock", "paper", "scissors"];
 let playerScore = 0;
 let computerScore = 0;
 
+const gameButtons = document.querySelectorAll('.game-buttons');
+gameButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    console.log(button.id);
+  });
+});
+
 function generateComputerChoice() {
   let computerChoice = POSSIBLE_CHOICES[Math.floor(Math.random() * 3)];
   console.log("computer: " + computerChoice);
