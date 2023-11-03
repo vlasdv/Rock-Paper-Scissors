@@ -1,6 +1,10 @@
 const POSSIBLE_CHOICES = ["rock", "paper", "scissors"];
+const numberOfRounds = 5;
+
 let playerScore = document.querySelector('#player-score');
 let computerScore = document.querySelector('#computer-score');
+
+const mainContainer = document.querySelector('.main-container');
 
 const gameButtons = document.querySelectorAll('.game-buttons');
 gameButtons.forEach((button) => {
@@ -24,14 +28,14 @@ function increaseComputerScore() {
   computerScore.textContent = Number(computerScore.textContent) + 1;
 }
 
-// function playerSelection() {
-//   let input;
-//   do {
-//     input = prompt("Enter rock, paper or scissors").toLowerCase();
-//   } while (POSSIBLE_CHOICES.includes(input));
-//   console.log("player: " + input);
-//   return input;
-// }
+function resetScore() {
+  playerScore.textContent = '0';
+  computerScore.textContent = '0';
+}
+
+function isWinnerFound() {
+  return (+playerScore.textContent === numberOfRounds || +computerScore.textContent === numberOfRounds);   
+}
 
 function playRound(playerChoice, computerChoice) {
   if (playerChoice === computerChoice) {
@@ -46,23 +50,44 @@ function playRound(playerChoice, computerChoice) {
   }
   console.log("player score: " + playerScore.textContent);
   console.log("computer score: " + computerScore.textContent);
-}
 
-// function game(numberOfRounds) {
-//   for (let i = 0; i < numberOfRounds; i++) {
-//     playRound(playerSelection(), getComputerChoice());
-//   }
-//   displayWinner();
-// }
-
-function displayWinner() {
-  if (playerScore > computerScore) {
-    console.log("player wins");
-  } else if (playerScore < computerScore) {
-    console.log("computer wins");
-  } else {
-    console.log("tie!");
+  if (isWinnerFound()) {
+    displayWinner(+playerScore.textContent, +computerScore.textContent);
   }
 }
 
-game(5);
+function displayWinner(player, computer) {
+  let winnerText = '';
+  if (player === 5 && computer === 5) {
+    winnerText = 'Tie!';
+  } else if (player === 5) {
+    winnerText = 'You win!';
+  } else if (computer === 5) {
+    winnerText = 'Computer win!';
+  }
+
+  const buttonsContainer = document.querySelector('.buttons-container');
+  console.log(buttonsContainer);
+  const gameDiv = mainContainer.removeChild(buttonsContainer);
+  
+  const newGameDiv = document.createElement('div');  
+  const winnerParagraph = document.createElement('p');
+  const restartButton = document.createElement('button');
+
+  newGameDiv.className = 'new-game';
+  console.log(winnerText);
+  winnerParagraph.textContent = winnerText;
+  restartButton.textContent = 'Play again?';
+  
+  newGameDiv.appendChild(winnerParagraph);
+  newGameDiv.appendChild(restartButton);
+
+  mainContainer.insertBefore(newGameDiv, document.querySelector('.score-container'));
+
+  restartButton.addEventListener('click', () => {
+    resetScore();
+    mainContainer.removeChild(newGameDiv);
+    mainContainer.insertBefore(gameDiv, document.querySelector('.score-container'));
+  });
+
+}
