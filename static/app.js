@@ -10,7 +10,7 @@ const gameButtons = document.querySelectorAll('.game-buttons');
 gameButtons.forEach((button) => {
   button.addEventListener('click', () => {
     console.log(button.id);
-    playRound(button.id, generateComputerChoice());
+    playGame(button.id, generateComputerChoice());
   });
 });
 
@@ -37,7 +37,7 @@ function isWinnerFound() {
   return (+playerScore.textContent === numberOfRounds || +computerScore.textContent === numberOfRounds);   
 }
 
-function playRound(playerChoice, computerChoice) {
+function playGame(playerChoice, computerChoice) {
   if (playerChoice === computerChoice) {
     increasePlayerScore();
     increaseComputerScore();
@@ -54,6 +54,8 @@ function playRound(playerChoice, computerChoice) {
   if (isWinnerFound()) {
     displayWinner(+playerScore.textContent, +computerScore.textContent);
   }
+
+  newGame(winnerText);
 }
 
 function displayWinner(player, computer) {
@@ -65,23 +67,21 @@ function displayWinner(player, computer) {
   } else if (computer === 5) {
     winnerText = 'Computer win!';
   }
+}
 
+function newGame(winnerText) {
   const buttonsContainer = document.querySelector('.buttons-container');
-  console.log(buttonsContainer);
   const gameDiv = mainContainer.removeChild(buttonsContainer);
   
   const newGameDiv = document.createElement('div');  
   const winnerParagraph = document.createElement('p');
   const restartButton = document.createElement('button');
-
   newGameDiv.className = 'new-game';
-  console.log(winnerText);
   winnerParagraph.textContent = winnerText;
   restartButton.textContent = 'Play again?';
   
   newGameDiv.appendChild(winnerParagraph);
   newGameDiv.appendChild(restartButton);
-
   mainContainer.insertBefore(newGameDiv, document.querySelector('.score-container'));
 
   restartButton.addEventListener('click', () => {
@@ -89,5 +89,4 @@ function displayWinner(player, computer) {
     mainContainer.removeChild(newGameDiv);
     mainContainer.insertBefore(gameDiv, document.querySelector('.score-container'));
   });
-
 }
