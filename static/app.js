@@ -52,10 +52,8 @@ function playGame(playerChoice, computerChoice) {
   console.log("computer score: " + computerScore.textContent);
 
   if (isWinnerFound()) {
-    displayWinner(+playerScore.textContent, +computerScore.textContent);
+    newGame(displayWinner(+playerScore.textContent, +computerScore.textContent));
   }
-
-  newGame(winnerText);
 }
 
 function displayWinner(player, computer) {
@@ -67,6 +65,7 @@ function displayWinner(player, computer) {
   } else if (computer === 5) {
     winnerText = 'Computer win!';
   }
+  return winnerText;
 }
 
 function newGame(winnerText) {
